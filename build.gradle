@@ -1,0 +1,114 @@
+buildscript {
+    ext {
+        versionVertx = '3.9.2'
+        versionLombok = '1.18.10'
+        versionGuice = '4.2.3'
+        versionGuava = '29.0-jre'
+        versionDynamoDB = '2.14.12'
+        versionJackson = '2.11.0'
+        versionMicrometer = '1.3.0'
+        versionLogback = '1.2.3'
+        versionSwagger = '1.5.18'
+        versionSwaggerCli = '2.3.1'
+        versionHibernate = '6.0.17.Final'
+        versionJavax = '2.0.1.Final'
+        versionApacheCommons = '3.10'
+        versionGoogleCode = '8.12.3'
+        versionAwsJavaSdk = '1.11.627'
+        versionJose4j = '0.6.5'
+        versionJackson = '2.9.0'
+        versionJavaxEl = '3.0.1-b11'
+        versionScheme = '2e42f40'
+        versionKafka = "2.0.1"
+        versionQuarkus = '1.7.2.Final'
+        versionSmallrye = '1.1.0'
+    }
+}
+
+plugins {
+    id 'java'
+    id 'io.quarkus' version '1.7.2.Final'
+}
+
+apply plugin: 'java'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+wrapper {
+    gradleVersion = "6.6.1"
+}
+
+dependencies {
+    compile group: 'software.amazon.awssdk', name: 'dynamodb', version: versionDynamoDB
+    compile group: 'com.amazonaws', name: 'aws-java-sdk', version: versionAwsJavaSdk
+
+    compile group: 'io.quarkus', name: 'quarkus-universe-bom', version: versionQuarkus, ext: 'pom'
+    compile group: 'io.quarkus', name: 'quarkus-vertx', version: versionQuarkus
+    compile group: 'io.quarkus', name: 'quarkus-scheduler', version: versionQuarkus
+    compile group: 'io.quarkus', name: 'quarkus-vertx-web', version: versionQuarkus
+    compile group: 'io.quarkus', name: 'quarkus-config-yaml', version: versionQuarkus
+    compile group: 'io.quarkus', name: 'quarkus-smallrye-reactive-messaging-kafka', version: versionQuarkus
+    compile group: 'io.quarkus', name: 'quarkus-smallrye-openapi', version: versionQuarkus
+    compile group: 'io.quarkus', name: 'quarkus-smallrye-fault-tolerance', version: versionQuarkus
+    compile group: 'io.quarkus', name: 'quarkus-smallrye-reactive-messaging-kafka', version: versionQuarkus
+    compile group: 'io.quarkus', name: 'quarkus-resteasy', version: versionQuarkus
+    compile group: 'io.quarkus', name: 'quarkus-resteasy-mutiny', version: versionQuarkus
+    compile group: 'io.quarkus', name: 'quarkus-resteasy-jackson', version: versionQuarkus
+    compile group: 'io.quarkus', name: 'quarkus-logging-json', version: versionQuarkus
+    compile group: 'io.quarkus', name: 'quarkus-container-image-docker', version: versionQuarkus
+
+    compile group: 'io.smallrye.reactive', name: 'smallrye-mutiny-vertx-web-client', version: versionSmallrye
+    compile group: 'io.smallrye.reactive', name: 'smallrye-reactive-messaging-vertx-eventbus', version: '2.3.0'
+
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: versionJackson
+    compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: versionJackson
+    compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jdk8', version: versionJackson
+
+    compile group: 'io.micrometer', name: 'micrometer-core', version: versionMicrometer
+    compile group: 'io.micrometer', name: 'micrometer-registry-prometheus', version: versionMicrometer
+    compile group: 'io.micrometer', name: 'micrometer-registry-jmx', version: versionMicrometer
+
+    compile group: 'io.netty', name: 'netty-transport-native-epoll', version: '4.1.51.Final', classifier: 'linux-x86_64'
+    compile group: 'io.netty', name: 'netty-transport-native-kqueue', version: '4.1.51.Final', classifier: 'osx-x86_64'
+
+    compile group: 'javax.validation', name: 'validation-api', version: versionJavax
+    compile group: 'org.projectlombok', name: 'lombok', version: versionLombok
+    compile group: 'com.google.guava', name: 'guava', version: versionGuava
+    compile group: 'javax.el', name: 'javax.el-api', version: '3.0.0'
+    compile group: 'org.glassfish.web', name: 'javax.el', version: '2.2.6'
+    compile group: 'org.glassfish', name: 'javax.el', version: versionJavaxEl
+    compile group: 'org.hibernate.validator', name: 'hibernate-validator', version: versionHibernate
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: versionApacheCommons
+    compile group: 'org.bitbucket.b_c', name: 'jose4j', version: versionJose4j
+    compile group: "com.googlecode.libphonenumber", name: "libphonenumber", version: "7.2.7"
+    compile group: 'org.jboss.logmanager', name: 'log4j-jboss-logmanager', version: '1.2.0.Final'
+    compile group: "io.swagger", name: "swagger-annotations", version: versionSwagger
+
+    testCompile group: 'io.rest-assured', name: 'rest-assured', version: '4.3.1'
+    testCompile group: 'io.quarkus', name: 'quarkus-junit5', version: versionQuarkus
+    testCompile group: 'com.xebialabs.restito', name: 'restito', version: '0.9.3'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile group: 'io.vertx', name: 'vertx-unit', version: '3.4.2'
+    testCompile group: 'io.vertx', name: 'vertx-codegen', version: '3.4.2'
+    testCompile group: 'io.rest-assured', name: 'rest-assured', version: '3.0.3'
+    testCompile group: 'org.mockito', name: 'mockito-core', version: '2.8.47'
+    testCompile group: 'com.google.inject.extensions', name: 'guice-testlib', version: '4.1.0'
+    testCompile group: 'io.vertx', name: 'vertx-web-client', version: '4.0.0-milestone4'
+
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: versionLombok
+}
+super
+group = 'org.gaussian.supersonic.session'
+version = "${buildVersion}" != "" ? "${buildVersion}" : "snapshot"
+
+compileJava {
+    options.compilerArgs << '-parameters'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}

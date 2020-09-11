@@ -1,0 +1,397 @@
+{
+	"info": {
+		"_postman_id": "83468968-4e03-4ad2-890c-d64cde614ec1",
+		"name": "suse",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create session",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "2e3c5479-25a6-4387-a487-ad77b63d2333",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "18eccd94-b341-4e3c-bcc7-1bd2a8d9cb6b",
+						"exec": [
+							"session_id = pm.response.json().session_id;",
+							"pm.environment.set(\"session_id\", session_id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Fire-And-Forget",
+						"type": "text",
+						"value": "false"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"country\": \"SE\",\n  \"locale\": \"en-EN\",  \n  \"tasks\": [\n    {\n      \"name\": \"project umbrella - feature GeoLocation\",\n      \"created_at\": \"2020-09-11T19:20:27.837378Z\",\n      \"status\": \"INCOMPLETE\"\n    }\n  ]  \n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/sessions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"sessions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update session",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "09151175-87e4-488d-a64a-ee3f239e85b9",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "db707619-bcbc-4685-ba87-0877b59e0d34",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"tasks\": [\n    {\n      \"name\": \"project umbrella - feature GeoLocation\",\n      \"created_at\": \"2020-09-11T19:20:27.837378Z\",\n      \"status\": \"INCOMPLETE\"\n    },\n    {\n      \"name\": \"project jupyter - feature risk scoring\",\n      \"created_at\": \"2020-08-11T19:20:27.837378Z\",\n      \"status\": \"INCOMPLETE\"\n    }\n  ]  \n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/sessions/{{session_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"sessions",
+						"{{session_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "read session",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "9343b04f-e207-4d65-94fa-2d08e4a5c5de",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "959ffad3-2e58-4b95-9201-2b94074b63ed",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/sessions/{{session_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"sessions",
+						"{{session_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ping",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "6dfb2620-7059-43c0-aac3-2d49a08c1906",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "df6f0d55-df29-4d89-b804-9de6e8f9f5d2",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/reactive/ping",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"reactive",
+						"ping"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "open-api",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "9b7d0ac5-e8ef-4100-bda9-2f499aeb860f",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "c4743252-10d8-4e60-8241-6fb59d5017d5",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/openapi",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"openapi"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a8001471-fdd2-4ebf-9118-ca6a1bba7e75",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "3b431846-4f12-4fef-ba42-a76070c19273",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/sessions/{{session_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"sessions",
+						"{{session_id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

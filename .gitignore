@@ -1,0 +1,33 @@
+### JetBrains IDEs:
+.idea
+*.iml
+*.ipr
+*.iws
+
+### Eclipse IDE:
+.settings/
+.classpath
+.project
+
+### Gradle
+build
+.gradle
+
+# Gradle GUI config
+gradle-app.setting
+
+### JIRA plugin
+atlassian-ide-plugin.xml
+
+### Mac OSX:
+.DS_Store
+
+### Others:
+target
+out
+logs
+*~
+classes
+out
+/src/test/resources/dev/
+/src/main/resources/dev/

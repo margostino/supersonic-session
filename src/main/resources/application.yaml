@@ -1,0 +1,86 @@
+# Configuration file
+# key = value
+
+quarkus:
+  profile: dev
+  package:
+    type: fast-jar
+#    type: native
+  native:
+    additional-build-args: --allow-incomplete-classpath
+#    container-build: true
+#    container-runtime: docker
+#  container-image:
+#    build: true
+  vertx:
+    prefer-native-transport: true
+  http:
+    so-reuse-port: true
+  swagger-ui:
+    always-include: true
+
+mp:
+  openapi:
+    extensions:
+      smallrye:
+        info:
+          title: Supersonic Session API
+          version: 1.0.0
+          description: REST API for Supersonic Session
+          contact:
+            email: maj.dagostino@gmail.com
+            name: Supersonic Session API
+            url: https://margostino.com/
+          license:
+            name: Apache 2.0
+            url: http://www.apache.org/licenses/LICENSE-2.0.html
+
+"%dev":
+  quarkus:
+    log:
+      level: INFO
+      category:
+        "org.gaussian":
+          level: ALL
+        "io.quarkus":
+          level: INFO
+        "org.apache":
+          level: INFO
+      console:
+        json: false
+  event-bus:
+    session:
+      create: suse.eventbus.new_sessions
+  mp:
+    openapi:
+      extensions:
+        smallrye:
+          info:
+            title: Supersonic Session API (SUSE / development)
+    messaging:
+      outgoing:
+        new_sessions_kafka_out:
+          connector: smallrye-kafka
+          type: io.smallrye.reactive.messaging.kafka.Kafka
+          topic: suse.new_sessions
+          bootstrap.servers: localhost:9092
+          key:
+            serializer: org.apache.kafka.common.serialization.StringSerializer
+          value:
+            serializer: org.apache.kafka.common.serialization.StringSerializer
+          acks: 1
+      incoming:
+        new_sessions_kafka_in:
+          connector: smallrye-kafka # smallrye-vertx-eventbus
+          type: io.smallrye.reactive.messaging.kafka.Kafka
+          topic: suse.new_sessions
+          bootstrap.servers: localhost:9092
+          key:
+            deserializer: org.apache.kafka.common.serialization.StringDeserializer
+          value:
+            deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+  kafka:
+    bootstrap.servers: localhost:9092
+
+

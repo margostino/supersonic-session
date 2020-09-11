@@ -1,0 +1,76 @@
+version: '3.7'
+
+services:
+
+#  toxiproxy:
+#    image: shopify/toxiproxy
+#    ports:
+#      - "8474:8474"
+#      - "35015-35050:35015-35050"
+#    command: "-host=0.0.0.0 -config /toxiproxy.json"
+#    volumes:
+#      - ./docker/resources/toxiproxy.json:/toxiproxy.json
+
+  dynamodb:
+    image: amazon/dynamodb-local
+    entrypoint: java -jar DynamoDBLocal.jar -inMemory -sharedDb
+    ports:
+      - "8000:8000"
+
+  db-table-creator:
+    image: amazon/aws-cli
+    environment:
+      - AWS_ACCESS_KEY_ID=local
+      - AWS_SECRET_ACCESS_KEY=dummy
+      - AWS_DEFAULT_REGION=local
+    command:
+      - dynamodb
+      - create-table
+      - --table-name
+      - supersonic-sessions
+      - --endpoint
+      - http://dynamodb:8000
+      - --key-schema
+      - AttributeName=session_id,KeyType=HASH
+      - --attribute-definitions
+      - AttributeName=session_id,AttributeType=S
+      - --provisioned-throughput
+      - ReadCapacityUnits=100,WriteCapacityUnits=100
+      - --stream-specification
+      - StreamEnabled=true,StreamViewType=NEW_IMAGE
+      - --region
+      - local
+    links:
+      - dynamodb
+
+  zookeeper:
+    image: strimzi/kafka:0.11.3-kafka-2.1.0
+    command: [
+      "sh", "-c",
+      "bin/zookeeper-server-start.sh config/zookeeper.properties"
+    ]
+    ports:
+      - "2181:2181"
+    environment:
+      LOG_DIR: /tmp/logs
+
+  kafka:
+    image: strimzi/kafka:0.11.3-kafka-2.1.0
+    command: [
+      "sh", "-c",
+      "bin/kafka-server-start.sh config/server.properties --override listeners=$${KAFKA_LISTENERS} --override advertised.listeners=$${KAFKA_ADVERTISED_LISTENERS} --override zookeeper.connect=$${KAFKA_ZOOKEEPER_CONNECT}"
+    ]
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+    environment:
+      LOG_DIR: "/tmp/logs"
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+
+#  wiremock:
+#    image: rodolpheche/wiremock
+#    ports:
+#    - "8123:8080"
