@@ -9,7 +9,7 @@ This is just an experiment. The first version is based on a Generic Task Demo Se
 The project uses [Quarkus](https://quarkus.io/) to build the CRUD API Rest service for (reduced and lightweight version) a backend/server session handling. The data persistance relies on DynamoDB. For reactive programming support it uses [Vertx](https://vertx.io/) and [Smallrye](https://smallrye.io/). The architecture follows the [MicroProfile](https://projects.eclipse.org/projects/technology.microprofile) specification for building microservices and deliver portable applications across multiple runtimes.
 As an Event-Driven Backbone the project uses Kafka.  
 
-![](./documentation/images/quarkus.png) ![](./documentation/images/vertx.png) ![](./documentation/images/dynamodb.png) ![](./documentation/images/microprofile.png#250x)
+![](./documentation/images/quarkus.png#250x) ![](./documentation/images/vertx.png#250x) ![](./documentation/images/dynamodb.png#250x) ![](./documentation/images/microprofile.png#250x)
 
 ### Requirements:
 
