@@ -82,8 +82,6 @@ dependencies {
     compile group: 'org.glassfish', name: 'javax.el', version: versionJavaxEl
     compile group: 'org.hibernate.validator', name: 'hibernate-validator', version: versionHibernate
     compile group: 'org.apache.commons', name: 'commons-lang3', version: versionApacheCommons
-    compile group: 'org.bitbucket.b_c', name: 'jose4j', version: versionJose4j
-    compile group: "com.googlecode.libphonenumber", name: "libphonenumber", version: "7.2.7"
     compile group: 'org.jboss.logmanager', name: 'log4j-jboss-logmanager', version: '1.2.0.Final'
     compile group: "io.swagger", name: "swagger-annotations", version: versionSwagger
 
