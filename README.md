@@ -42,6 +42,20 @@ The default profile is `dev`
 - Build the docker image: `docker build -f src/main/docker/Dockerfile.jvm -t pass/pass .`
 - Run the docker container: `docker run -i --rm -p 8080:8080 pass/pass`
 
+## Metrics
+
+- [http://localhost:8080/health-ui/](http://localhost:8080/health-ui/)
+- [http://localhost:8080/health/](http://localhost:8080/health/)
+- [http://localhost:8080/metrics](http://localhost:8080/metrics)
+- [http://localhost:8080/health/live](http://localhost:8080/health/live)
+- [http://localhost:8080/health/ready](http://localhost:8080/health/ready)
+- [http://localhost:8080/metrics/application](http://localhost:8080/metrics/application)
+
+
+- Build the application: `./gradlew quarkusBuild`
+- Build the docker image: `docker build -f src/main/docker/Dockerfile.jvm -t pass/pass .`
+
+
 ### What's next
 - Performance Benchmark
 - ETag header implementation for Optimistic Locking
