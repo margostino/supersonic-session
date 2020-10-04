@@ -59,6 +59,7 @@ dependencies {
     compile group: 'io.quarkus', name: 'quarkus-resteasy-jackson', version: versionQuarkus
     compile group: 'io.quarkus', name: 'quarkus-logging-json', version: versionQuarkus
     compile group: 'io.quarkus', name: 'quarkus-container-image-docker', version: versionQuarkus
+    compile group: 'io.quarkus', name: 'quarkus-smallrye-metrics', version: versionQuarkus
 
     compile group: 'io.smallrye.reactive', name: 'smallrye-mutiny-vertx-web-client', version: versionSmallrye
     compile group: 'io.smallrye.reactive', name: 'smallrye-reactive-messaging-vertx-eventbus', version: '2.3.0'

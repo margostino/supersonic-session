@@ -7,6 +7,8 @@ import io.vertx.core.http.HttpServerResponse;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.RoutingContext;
 import lombok.extern.slf4j.Slf4j;
+import org.eclipse.microprofile.metrics.annotation.Counted;
+import org.eclipse.microprofile.metrics.annotation.Timed;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
@@ -23,9 +25,10 @@ import static io.vertx.core.http.HttpMethod.DELETE;
 import static io.vertx.core.http.HttpMethod.GET;
 import static io.vertx.core.http.HttpMethod.POST;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
-import static org.gaussian.supersonic.session.service.SessionFailureHandler.getStatusCodeFrom;
+import static org.eclipse.microprofile.metrics.MetricUnits.MILLISECONDS;
 import static org.gaussian.supersonic.session.serializer.JsonCodec.decode;
 import static org.gaussian.supersonic.session.serializer.JsonCodec.encode;
+import static org.gaussian.supersonic.session.service.SessionFailureHandler.getStatusCodeFrom;
 
 // TODO: add ETag support for Session Optimistic Locking
 
@@ -58,6 +61,8 @@ public class SessionRouter {
                  content = @Content(mediaType = APPLICATION_JSON, schema = @Schema(implementation = CreateSessionRequest.class)))
     @APIResponse(responseCode = "403", description = "You were not authorized to execute this operation.")
     @APIResponse(responseCode = "404", description = "The session does not exist.")
+    @Counted(name = "performedChecks", description = "How many primality checks have been performed.")
+    @Timed(name = "checksTimer", description = "A measure of how long it takes to perform the primality test.", unit = MILLISECONDS)
     @Route(path = "/sessions/:session_id", produces = APPLICATION_JSON, methods = GET)
     public void get(RoutingContext context) {
         HttpServerRequest httpRequest = context.request();
