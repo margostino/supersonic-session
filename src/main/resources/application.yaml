@@ -4,8 +4,8 @@
 quarkus:
   profile: dev
   package:
-    type: fast-jar
-#    type: native
+#    type: fast-jar
+    type: native
   native:
     additional-build-args: --allow-incomplete-classpath
 #    container-build: true

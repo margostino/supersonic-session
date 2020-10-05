@@ -57,11 +57,20 @@ help:
 .PHONY: build
 build: b.clean b.build
 
+.PHONY: docker.build.jvm
+docker.build.jvm: docker build -f src/main/docker/Dockerfile.jvm -t suse/suse .
+
+.PHONY: docker.build.native
+docker.build.native: docker build -f src/main/docker/Dockerfile.native -t suse/suse .
+
+# .PHONY: docker.run.container
+# docker.run.container: docker run -i --rm -p 8080:8080 suse/suse
+
 b.clean:
 	./gradlew -no-build-cache -PbuildVersion=${BUILD_VERSION} clean
 
 b.build:
-	./gradlew build -PbuildVersion=${BUILD_VERSION} -x :test
+	./gradlew quarkusBuild -PbuildVersion=${BUILD_VERSION} -x :test
 
 .PHONY: test.unit
 test.unit:

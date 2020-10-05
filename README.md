@@ -22,7 +22,7 @@ As an Event-Driven Backbone the project uses Kafka.
 
 ### How to run SUSE locally
 - Spin up dependencies: `make docker.run.dependencies`: Kafka + DynamoDB
-- Run PASS `./gradlew quarkusDev`  
+- Run SUSE `./gradlew quarkusDev`  
 - The folder `postman` includes the CRUD requests to test.
 
 The default profile is `dev`
@@ -32,15 +32,15 @@ The default profile is `dev`
 - Set `quarkus.package.type:native` in [application configuration](./src/main/resources/application.yaml) 
 - Build the application: `./gradlew quarkusBuild`
 - Grab a coffee and wait :)
-- Build the docker image: `docker build -f src/main/docker/Dockerfile.native -t pass/pass .`
-- Run the docker container: `docker run -i --rm -p 8080:8080 pass/pass`
+- Build the docker image: `docker build -f src/main/docker/Dockerfile.native -t suse/suse .`
+- Run the docker container: `docker run -i --rm -p 8080:8080 suse/suse`
 
 ## Build (fast) JAR
 
 - Set `quarkus.package.type:fast-jar` in [application configuration](./src/main/resources/application.yaml) 
 - Build the application: `./gradlew quarkusBuild`
-- Build the docker image: `docker build -f src/main/docker/Dockerfile.jvm -t pass/pass .`
-- Run the docker container: `docker run -i --rm -p 8080:8080 pass/pass`
+- Build the docker image: `docker build -f src/main/docker/Dockerfile.jvm -t suse/suse .`
+- Run the docker container: `docker run -i --rm -p 8080:8080 suse/suse`
 
 ## Metrics
 
@@ -53,7 +53,7 @@ The default profile is `dev`
 
 
 - Build the application: `./gradlew quarkusBuild`
-- Build the docker image: `docker build -f src/main/docker/Dockerfile.jvm -t pass/pass .`
+- Build the docker image: `docker build -f src/main/docker/Dockerfile.jvm -t suse/suse .`
 
 
 ### What's next
