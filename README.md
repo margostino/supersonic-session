@@ -38,16 +38,23 @@ The default profile is `dev`
 ## Build (fast) JAR
 
 - Set `quarkus.package.type:fast-jar` in [application configuration](./src/main/resources/application.yaml) 
-- Build the application: `./gradlew quarkusBuild`
+- Build the application: `./gradlew quarkusBuild` (or `./gradlew quarkusBuild --fast-jar`)
 - Build the docker image: `docker build -f src/main/docker/Dockerfile.jvm -t suse/suse .`
 - Run the docker container: `docker run -i --rm -p 8080:8080 suse/suse`
 
 ## Build (uber) JAR
 
 - Set `quarkus.package.type:uber-jar` in [application configuration](./src/main/resources/application.yaml) 
-- Build the application: `./gradlew quarkusBuild`
+- Build the application: `./gradlew quarkusBuild` (or `./gradlew quarkusBuild --uber-jar`)
 - Build the docker image: `docker build -f src/main/docker/Dockerfile -t suse/suse .`
 - Run the docker container: `docker run -i --rm -p 8080:8080 suse/suse`
+
+## Build (uber) JAR + Run SUSE as Docker Container
+
+- `make docker.build` 
+- `make docker.run.suse`
+- `curl http://localhost:8080/reactive/ping` to check service is UP.
+
 
 ## Metrics
 
@@ -62,6 +69,9 @@ The default profile is `dev`
 - Build the application: `./gradlew quarkusBuild`
 - Build the docker image: `docker build -f src/main/docker/Dockerfile.jvm -t suse/suse .`
 
+### Notes:
+
+- If you have environment variable `KAFKA_BOOTSTRAP_SERVERS=some-ip:9092`, it will take precedence.
 
 ### What's next
 - Performance Benchmark
