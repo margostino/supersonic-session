@@ -35,5 +35,5 @@ docker_validate(){
   echo "docker_validate success"
 }
 
-docker_wait_until_healthy_or_none 0 360
+docker_wait_until_healthy_or_none 0 15
 docker_validate

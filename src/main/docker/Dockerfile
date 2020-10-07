@@ -21,6 +21,7 @@ ARG RUN_JAVA_VERSION=1.3.5
 
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en'
 ENV QUARKUS_PROFILE=docker
+ENV KAFKA_BOOTSTRAP_SERVERS=kafka:9092
 
 # Install java and the run-java script
 # Also set up permissions for user `1001`
@@ -40,13 +41,7 @@ RUN microdnf install curl ca-certificates ${JAVA_PACKAGE} \
 ENV JAVA_OPTIONS="-Dquarkus.http.host=0.0.0.0 -Djava.util.logging.manager=org.jboss.logmanager.LogManager"
 
 #COPY build/libs/supersonic-session-snapshot.jar /deployments/app.jar
-
-#COPY build/lib/* /deployments/lib/
-#COPY build/*-runner.jar /deployments/app.jar
-
-COPY build/supersonic-session-snapshot-native-image-source-jar/lib/* /deployments/lib/
-COPY build/supersonic-session-snapshot-native-image-source-jar/*-runner.jar /deployments/app.jar
-
+COPY build/*-runner.jar /deployments/app.jar
 
 EXPOSE 8080
 USER 1001

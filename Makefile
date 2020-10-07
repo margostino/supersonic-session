@@ -57,20 +57,20 @@ help:
 .PHONY: build
 build: b.clean b.build
 
+.PHONY: docker.build
+docker.build: b.clean b.build d.build
+
 .PHONY: docker.build.jvm
-docker.build.jvm: docker build -f src/main/docker/Dockerfile.jvm -t suse/suse .
+docker.build.jvm: b.clean b.build d.build.jvm
 
 .PHONY: docker.build.native
-docker.build.native: docker build -f src/main/docker/Dockerfile.native -t suse/suse .
-
-# .PHONY: docker.run.container
-# docker.run.container: docker run -i --rm -p 8080:8080 suse/suse
+docker.build.native: b.clean b.build d.build.native
 
 b.clean:
 	./gradlew -no-build-cache -PbuildVersion=${BUILD_VERSION} clean
 
 b.build:
-	./gradlew quarkusBuild -PbuildVersion=${BUILD_VERSION} -x :test
+	./gradlew quarkusBuild --uber-jar -PbuildVersion=${BUILD_VERSION} -x :test
 
 .PHONY: test.unit
 test.unit:
@@ -95,12 +95,13 @@ docker.run.all: d.compose.down
 
 .PHONY: docker.run.dependencies
 docker.run.dependencies: d.compose.down
-	make d.compose.up suse-instances=0
+	make d.compose.up suse-instances=0 db-creator-instances=0
 	make docker.wait
+	docker-compose up -d db-creator
 	docker-compose ps
 
 .PHONY: docker.run.suse
-docker.run.suse: build
+docker.run.suse:
 	$(call DOCKER_COMPOSE) up -d --force-recreate --build supersonic-session
 
 .PHONY: docker.run.suse.debug
@@ -112,7 +113,7 @@ docker.stop: d.compose.down
 
 .PHONY: d.compose.up
 d.compose.up:
-	$(call DOCKER_COMPOSE) up -d --remove-orphans --build --scale supersonic-session=${suse-instances}
+	$(call DOCKER_COMPOSE) up -d --remove-orphans --build --scale supersonic-session=${suse-instances} --scale db-creator=${db-creator-instances}
 
 .PHONY: d.compose.down
 d.compose.down:
@@ -148,8 +149,17 @@ d.publish:
 d.login:
 	docker login -u ${DOCKER_USER} ${DOCKER_PASSWORD} ${DOCKER_REPO}
 
+# d.build:
+# 	docker build --no-cache --build-arg BUILD_VERSION=${BUILD_VERSION} -t ${image-name} .
+
 d.build:
-	docker build --no-cache --build-arg BUILD_VERSION=${BUILD_VERSION} -t ${image-name} .
+	docker build -f src/main/docker/Dockerfile -t suse/suse .
+
+d.build.jvm:
+	docker build -f src/main/docker/Dockerfile.jvm -t suse/suse .
+
+d.build.native:
+	docker build -f src/main/docker/Dockerfile.native -t suse/suse .
 
 d.push:
 	docker push ${image-name}

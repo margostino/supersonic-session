@@ -42,6 +42,13 @@ The default profile is `dev`
 - Build the docker image: `docker build -f src/main/docker/Dockerfile.jvm -t suse/suse .`
 - Run the docker container: `docker run -i --rm -p 8080:8080 suse/suse`
 
+## Build (uber) JAR
+
+- Set `quarkus.package.type:uber-jar` in [application configuration](./src/main/resources/application.yaml) 
+- Build the application: `./gradlew quarkusBuild`
+- Build the docker image: `docker build -f src/main/docker/Dockerfile -t suse/suse .`
+- Run the docker container: `docker run -i --rm -p 8080:8080 suse/suse`
+
 ## Metrics
 
 - [http://localhost:8080/health-ui/](http://localhost:8080/health-ui/)
