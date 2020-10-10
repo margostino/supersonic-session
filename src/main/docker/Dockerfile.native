@@ -17,6 +17,7 @@
 FROM registry.access.redhat.com/ubi8/ubi-minimal:8.1
 
 ENV QUARKUS_PROFILE=docker
+ENV KAFKA_BOOTSTRAP_SERVERS=kafka:9092
 
 WORKDIR /work/
 COPY build/*-runner /work/application
