@@ -10,7 +10,7 @@ buildscript {
         versionLogback = '1.2.3'
         versionSwagger = '1.5.18'
         versionSwaggerCli = '2.3.1'
-        versionHibernate = '6.0.17.Final'
+        versionHibernate = '6.1.6.Final'
         versionJavax = '2.0.1.Final'
         versionApacheCommons = '3.10'
         versionGoogleCode = '8.12.3'
@@ -83,6 +83,8 @@ dependencies {
     compile group: 'org.glassfish.web', name: 'javax.el', version: '2.2.6'
     compile group: 'org.glassfish', name: 'javax.el', version: versionJavaxEl
     compile group: 'org.hibernate.validator', name: 'hibernate-validator', version: versionHibernate
+    compile group: 'org.hibernate', name: 'hibernate-validator', version: versionHibernate
+
     compile group: 'org.apache.commons', name: 'commons-lang3', version: versionApacheCommons
     compile group: 'org.jboss.logmanager', name: 'log4j-jboss-logmanager', version: '1.2.0.Final'
     compile group: "io.swagger", name: "swagger-annotations", version: versionSwagger
