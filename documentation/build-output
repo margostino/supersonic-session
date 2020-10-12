@@ -1,0 +1,33 @@
+| => ./gradlew quarkusBuild
+Starting a Gradle Daemon, 1 busy Daemon could not be reused, use --status for details
+
+> Task :quarkusGenerateCode
+preparing quarkus application
+
+> Task :quarkusBuild
+building quarkus jar
+
+[supersonic-session-snapshot-runner:3668]    classlist:  64,999.82 ms,  1.99 GB
+[supersonic-session-snapshot-runner:3668]        (cap):   4,020.28 ms,  1.99 GB
+[supersonic-session-snapshot-runner:3668]        setup:   8,272.47 ms,  1.99 GB
+21:31:40,224 INFO  [org.jbo.threads] JBoss Threads version 3.1.1.Final
+[supersonic-session-snapshot-runner:3668]     (clinit):     707.16 ms,  2.45 GB
+[supersonic-session-snapshot-runner:3668]   (typeflow):  47,545.74 ms,  2.45 GB
+[supersonic-session-snapshot-runner:3668]    (objects):  43,012.29 ms,  2.45 GB
+[supersonic-session-snapshot-runner:3668]   (features):   1,141.49 ms,  2.45 GB
+[supersonic-session-snapshot-runner:3668]     analysis:  94,687.41 ms,  2.45 GB
+[supersonic-session-snapshot-runner:3668]     universe:   3,204.48 ms,  2.47 GB
+[supersonic-session-snapshot-runner:3668]      (parse):  36,386.04 ms,  3.00 GB
+[supersonic-session-snapshot-runner:3668]     (inline):  42,575.13 ms,  3.72 GB
+[supersonic-session-snapshot-runner:3668]    (compile):  82,455.73 ms,  4.00 GB
+[supersonic-session-snapshot-runner:3668]      compile: 165,779.82 ms,  4.00 GB
+[supersonic-session-snapshot-runner:3668]        image:   9,710.32 ms,  3.86 GB
+[supersonic-session-snapshot-runner:3668]        write:  20,604.67 ms,  3.86 GB
+[supersonic-session-snapshot-runner:3668]      [total]: 368,546.04 ms,  3.86 GB
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 7.0.
+Use '--warning-mode all' to show the individual deprecation warnings.
+See https://docs.gradle.org/6.6.1/userguide/command_line_interface.html#sec:command_line_warnings
+
+BUILD SUCCESSFUL in 9m 48s
+5 actionable tasks: 2 executed, 3 up-to-date
