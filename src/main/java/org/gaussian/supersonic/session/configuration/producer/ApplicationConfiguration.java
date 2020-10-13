@@ -13,9 +13,6 @@ import org.gaussian.supersonic.session.serializer.mapping.VertxJsonModule;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
 import javax.inject.Singleton;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
 
 import static com.fasterxml.jackson.databind.SerializationFeature.WRITE_DATES_AS_TIMESTAMPS;
 
@@ -43,10 +40,4 @@ public class ApplicationConfiguration {
         return "local";
     }
 
-    @Produces
-    @Singleton
-    public Validator beanValidator() {
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        return factory.getValidator();
-    }
 }

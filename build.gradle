@@ -61,6 +61,8 @@ dependencies {
     compile group: 'io.quarkus', name: 'quarkus-container-image-docker', version: versionQuarkus
     compile group: 'io.quarkus', name: 'quarkus-smallrye-metrics', version: versionQuarkus
     compile group: 'io.quarkus', name: 'quarkus-smallrye-health', version: versionQuarkus
+    compile group: 'io.quarkus', name: 'quarkus-hibernate-validator', version: versionQuarkus
+
 
     compile group: 'io.smallrye.reactive', name: 'smallrye-mutiny-vertx-web-client', version: versionSmallrye
     compile group: 'io.smallrye.reactive', name: 'smallrye-reactive-messaging-vertx-eventbus', version: '2.3.0'
@@ -82,8 +84,6 @@ dependencies {
     compile group: 'javax.el', name: 'javax.el-api', version: '3.0.0'
     compile group: 'org.glassfish.web', name: 'javax.el', version: '2.2.6'
     compile group: 'org.glassfish', name: 'javax.el', version: versionJavaxEl
-    compile group: 'org.hibernate.validator', name: 'hibernate-validator', version: versionHibernate
-    compile group: 'org.hibernate', name: 'hibernate-validator', version: versionHibernate
 
     compile group: 'org.apache.commons', name: 'commons-lang3', version: versionApacheCommons
     compile group: 'org.jboss.logmanager', name: 'log4j-jboss-logmanager', version: '1.2.0.Final'
