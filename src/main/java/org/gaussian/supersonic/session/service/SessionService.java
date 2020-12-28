@@ -36,7 +36,7 @@ public class SessionService {
                                      .map(session -> sessionMapper.fromDomain(session, sessionId));
     }
 
-    public Uni<Boolean> update(String sessionId, UpdateSessionRequest request) {
+    public Uni<String> update(String sessionId, UpdateSessionRequest request) {
         Session updatedSession = sessionMapper.toDomain(sessionId, request);
         return sessionDatabaseService.update(updatedSession);
     }

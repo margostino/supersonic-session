@@ -1,5 +1,6 @@
 package org.gaussian.supersonic.session.model.response;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Builder;
@@ -24,13 +25,16 @@ public class SessionResponse {
     public final String country;
     private final SessionStatus sessionStatus;
     private final List<Task> tasks;
+    @JsonIgnore
+    private final String etag;
 
-    public SessionResponse(String sessionId, Instant createdAt, Instant expiresAt, String country, SessionStatus sessionStatus, List<Task> tasks) {
+    public SessionResponse(String sessionId, Instant createdAt, Instant expiresAt, String country, SessionStatus sessionStatus, List<Task> tasks, String etag) {
         this.sessionId = sessionId;
         this.createdAt = createdAt;
         this.expiresAt = expiresAt;
         this.country = country;
         this.sessionStatus = sessionStatus;
         this.tasks = tasks;
+        this.etag = etag;
     }
 }

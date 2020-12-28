@@ -11,24 +11,24 @@ services:
 #    volumes:
 #      - ./docker/resources/toxiproxy.json:/toxiproxy.json
 
-  supersonic-session:
-    image: suse/suse
-    environment:
-      - QUARKUS_PROFILE=docker
-      - AWS_REGION=eu-west-1
-      - AWS_ACCESS_KEY_ID=dummy
-      - AWS_SECRET_KEY=dummy
-    ports:
-      - "8080:8080"
-    depends_on:
-      - dynamodb
-      - kafka
-    healthcheck:
-      test: ["CMD", "curl", "suse:8080/ping | grep UP || exit 1"]
-      interval: 15s
-      timeout: 5s
-      retries: 20
-      start_period: 10s
+#  supersonic-session:
+#    image: suse/suse
+#    environment:
+#      - QUARKUS_PROFILE=docker
+#      - AWS_REGION=eu-west-1
+#      - AWS_ACCESS_KEY_ID=dummy
+#      - AWS_SECRET_KEY=dummy
+#    ports:
+#      - "8080:8080"
+#    depends_on:
+#      - dynamodb
+#      - kafka
+#    healthcheck:
+#      test: ["CMD", "curl", "suse:8080/ping | grep UP || exit 1"]
+#      interval: 15s
+#      timeout: 5s
+#      retries: 20
+#      start_period: 10s
 
   dynamodb:
     image: amazon/dynamodb-local

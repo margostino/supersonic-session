@@ -35,6 +35,7 @@ public class SessionMapper {
                               .expiresAt(session.getExpiresAt())
                               .country(session.getCountry())
                               .tasks(session.getTasks())
+                              .etag(session.etag())
                               .build();
     }
 

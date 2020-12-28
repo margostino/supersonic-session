@@ -1,6 +1,5 @@
 package org.gaussian.supersonic.session.model.session;
 
-import com.amazonaws.services.guardduty.model.Country;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Builder;
@@ -9,7 +8,6 @@ import org.gaussian.supersonic.session.model.Task;
 
 import java.time.Instant;
 import java.util.List;
-import java.util.Optional;
 
 @Getter
 @JsonDeserialize(builder = Session.SessionBuilder.class)
@@ -42,4 +40,12 @@ public class Session {
         this.expiresAt = expiresAt;
     }
 
+    @Override
+    public int hashCode() {
+        return sessionId.hashCode() * sessionStatus.hashCode() * country.hashCode() * lastModifiedAt.hashCode();// * tasks.hashCode();
+    }
+
+    public String etag() {
+        return String.valueOf(hashCode());
+    }
 }

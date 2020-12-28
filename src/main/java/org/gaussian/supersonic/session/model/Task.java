@@ -40,4 +40,9 @@ public class Task {
     @JsonPOJOBuilder(withPrefix = "")
     public static class TaskBuilder {
     }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode() * status.hashCode() * status.hashCode();
+    }
 }

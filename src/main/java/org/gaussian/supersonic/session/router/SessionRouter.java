@@ -86,7 +86,7 @@ public class SessionRouter {
 
         sessionService.update(sessionId, request)
                       .subscribe()
-                      .with(result -> handleResponse(httpServerResponse), failure -> handleResponse(failure, httpServerResponse));
+                      .with(etag -> handleResponse(etag, httpServerResponse), failure -> handleResponse(failure, httpServerResponse));
     }
 
     @APIResponse(responseCode = "200", description = "Delete an existing session.")
@@ -105,16 +105,19 @@ public class SessionRouter {
 
     private void handleResponse(SessionResponse response, HttpServerResponse httpServerResponse) {
         httpServerResponse.setStatusCode(200)
+                          .putHeader("ETag", response.getEtag())
                           .end(encode(response));
     }
 
-    private void handleResponse(HttpServerResponse httpServerResponse) {
-        httpServerResponse.setStatusCode(204).end();
+    private void handleResponse(String etag, HttpServerResponse httpServerResponse) {
+        httpServerResponse.setStatusCode(204)
+                          .putHeader("ETag", etag)
+                          .end();
     }
 
-    private void handleResponse(CreateSessionRequest createSessionRequest, HttpServerResponse httpServerResponse) {
-        httpServerResponse.setStatusCode(200)
-                          .end(encode(createSessionRequest));
+    private void handleResponse(HttpServerResponse httpServerResponse) {
+        httpServerResponse.setStatusCode(204)
+                          .end();
     }
 
     private void handleResponse(Throwable throwable, HttpServerResponse httpServerResponse) {

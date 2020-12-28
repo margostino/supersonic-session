@@ -34,8 +34,8 @@ public class SessionDatabaseService {
         return databaseService.get(sessionId).map(this::extractDataFrom);
     }
 
-    public Uni<Boolean> update(Session session) {
-        return databaseService.update(SessionDBItem.fromDomain(session)).map(result -> true);
+    public Uni<String> update(Session session) {
+        return databaseService.update(SessionDBItem.fromDomain(session)).map(result -> session.etag());
     }
 
     public void updateAndForget(Session session) {
